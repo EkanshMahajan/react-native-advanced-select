@@ -1,9 +1,9 @@
 {
-  "name": "react-native-select-plus",
+  "name": "react-native-advanced-select",
   "license": "MIT",
   "main": "src/index.js",
   "author": {
-    "name": "saveliy_kremen"
+    "name": "Ekansh Mahajan"
   },
   "description": "Select component for react-native",
   "devDependencies": {
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/saveliy-kremen/react-native-select-plus.git"
+    "url": "git+https://github.com/EkanshMahajan/react-native-advanced-select.git"
   },
   "version": "0.1.8"
 }
