@@ -5,9 +5,7 @@ import {
   StyleSheet,
   Component,
   TouchableWithoutFeedback,
-  View,
-  TextInput,
-  Modal
+  View
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
@@ -16,8 +14,6 @@ const Items = require("./items");
 
 const window = Dimensions.get("window");
 
-const SELECT = "SELECT";
-
 const styles = StyleSheet.create({
   container: {
     borderColor: "#BDBDC1",
@@ -25,7 +21,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class Select extends React.Component {
+class Select extends Component {
   constructor(props) {
     super(props);
 
@@ -141,16 +137,20 @@ class Select extends React.Component {
               alignItems: "center"
             }}
           >
-            <TouchableWithoutFeedback onPress={this._reset.bind(this)}>
-              <Icon
-                name="ios-close"
-                style={{
-                  color: "black",
-                  fontSize: 26,
-                  marginRight: 15
-                }}
-              />
-            </TouchableWithoutFeedback>
+            {
+              search && (
+                <TouchableWithoutFeedback onPress={this._reset.bind(this)}>
+                  <Icon
+                    name="ios-close"
+                    style={{
+                      color: "black",
+                      fontSize: 26,
+                      marginRight: 15
+                    }}
+                  />
+                </TouchableWithoutFeedback>
+              )
+            }
             <TouchableWithoutFeedback onPress={this._onPress.bind(this)}>
               <Icon
                 name="md-arrow-dropdown"
@@ -165,11 +165,13 @@ class Select extends React.Component {
         </View>
         {this.state.show_options && (
           <Items
-            items={data.filter(item => {
+            items={search ? data.filter(item => {
               const parts = this.state.search_text.trim().split(/[ \-:]+/);
               const regex = new RegExp(`(${parts.join("|")})`, "ig");
               return regex.test(item.label);
-            })}
+            }) : data}
+            value={this.state.value}
+            search={search}
             show={this.state.show_options}
             width={width}
             height={height}
@@ -198,7 +200,7 @@ Select.defaultProps = {
   width: 200,
   height: 40,
   onSelect: () => {},
-  search: true,
+  search: false,
   initKey: 0,
   placeholder: "Select",
   searchPlaceholder: "Search"
