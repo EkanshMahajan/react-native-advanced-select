@@ -9,13 +9,13 @@
 ## Installation
 
 ```bash
-$ npm install react-native-advanced-select --save
+$ npm install git+https://github.com/EkanshMahajan/react-native-advanced-select.git --save
 ```
 
 or use yarn
 
 ```bash
-$ yarn add react-native-advanced-select
+$ yarn add https://github.com/EkanshMahajan/react-native-advanced-select
 ```
 
 ## Usage
