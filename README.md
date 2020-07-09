@@ -1,23 +1,21 @@
-# react-native-select-plus
+# react-native-advanced-select
 
-[![npm](https://img.shields.io/npm/v/react-native-multiple-select.svg)](https://www.npmjs.com/package/react-native-select-plus) [![Downloads](https://img.shields.io/npm/dt/react-native-multiple-select.svg)](https://www.npmjs.com/package/react-native-select-plus) [![Licence](https://img.shields.io/npm/l/react-native-multiple-select.svg)](https://www.npmjs.com/package/react-native-select-plus)
-
-> Simple select component for react-native.
+> Simple select component with in-built search for React-Native.
 
 ## Demo
 
-<img src="https://raw.githubusercontent.com/williamgurzoni/react-native-select-plus/master/demo/Example-iOS.gif">
+<img src="https://raw.githubusercontent.com/EkanshMahajan/react-native-advanced-select/master/demo/Example-iOS.gif">
 
 ## Installation
 
 ```bash
-$ npm install react-native-select-plus --save
+$ npm install react-native-advanced-select --save
 ```
 
 or use yarn
 
 ```bash
-$ yarn add react-native-select-plus
+$ yarn add react-native-advanced-select
 ```
 
 ## Usage
@@ -30,7 +28,7 @@ The snippet below shows how the component can be used
 // import component
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import Select from 'react-native-select-plus';
+import Select from 'react-native-advanced-select';
 
 class SelectExample extends Component {
 
