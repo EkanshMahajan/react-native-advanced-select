@@ -14,6 +14,7 @@ import {
 import Icon from "react-native-vector-icons/Ionicons";
 
 const Overlay = require("./overlay");
+const Option = require("./option");
 
 const window = Dimensions.get("window");
 
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class Items extends React.Component {
+class Items extends Component {
   constructor(props) {
     super(props);
   }
@@ -43,7 +44,9 @@ class Items extends React.Component {
       show,
       handleClose,
       onChangeText,
-      placeholder
+      placeholder,
+      search,
+      value
     } = this.props;
     let x = 0;
     let y = 0;
@@ -85,31 +88,48 @@ class Items extends React.Component {
               borderBottomWidth: 2 / window.scale
             }}
           >
-            <View
-              style={{
-                flex: 1,
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                alignItems: "center"
-              }}
-            >
-              <Icon
-                name="ios-search"
-                style={{
-                  color: "black",
-                  fontSize: 26,
-                  marginLeft: 5,
-                  flex: 1
-                }}
-              />
-              <TextInput
-                onChangeText={onChangeText}
-                placeholder={placeholder}
-                underlineColorAndroid="transparent"
-                style={{ flex: 5, margin: 0, padding: 0 }}
-              />
+            {
+              search ? (
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center"
+                  }}
+                >
+                  <Icon
+                    name="ios-search"
+                    style={{
+                      color: "black",
+                      fontSize: 26,
+                      marginLeft: 5,
+                      flex: 1
+                    }}
+                  />
+                  <TextInput
+                    onChangeText={onChangeText}
+                    placeholder={placeholder}
+                    underlineColorAndroid="transparent"
+                    style={{ flex: 5, margin: 0, padding: 0 }}
+                  />
+                </View>
+              ) : (
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center"
+                  }}
+                >
+                  <Option>
+                    {value}
+                  </Option>
+                </View>
+              )
+            }
             </View>
-          </View>
           <ScrollView
             style={{ width: width - 2, height: height * 3 }}
             automaticallyAdjustContentInsets={false}
@@ -124,13 +144,17 @@ class Items extends React.Component {
 }
 
 Items.propTypes = {
-  onPress: PropTypes.func
+  onPress: PropTypes.func,
+  search: PropTypes.bool,
+  value: PropTypes.string
 };
 
 Items.defaultProps = {
   width: 0,
   height: 0,
-  onPress: () => {}
+  onPress: () => {},
+  search: false,
+  value: ''
 };
 
 module.exports = Items;
