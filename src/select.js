@@ -102,7 +102,7 @@ class Select extends React.Component {
     } = this.props;
     const dimensions = { width, height };
     const selectedItem = data.find(item => keyExtractor(item) === selectedKey)
-    const selectedItemLabel = labelExtractor(selectedItem) || ''
+    const selectedItemLabel = `${labelExtractor(selectedItem)}` || ''
 
     return (
       <View>
@@ -153,7 +153,7 @@ class Select extends React.Component {
             items={search ? data.filter(item => {
               const parts = this.state.search_text.trim().split(/[ \-:]+/);
               const regex = new RegExp(`(${parts.join("|")})`, "ig");
-              const label = labelExtractor(item) || ''
+              const label = `${labelExtractor(item)}` || ''
               return regex.test(label);
             }) : data}
             value={selectedItemLabel}
