@@ -18,18 +18,26 @@ class Option extends React.Component {
   }
 
   render() {
-    const { style, styleText } = this.props;
+    const { optionContainerStyle, optionTextStyle, optionText } = this.props;
 
     return (
-      <View style={[styles.container, style]}>
-        <Text style={styleText}>{this.props.children}</Text>
+      <View style={[styles.container, optionContainerStyle]}>
+        <Text style={optionTextStyle}>{optionText}</Text>
       </View>
     );
   }
 }
 
 Option.propTypes = {
-  children: PropTypes.string.isRequired
+  optionText: PropTypes.string,
+  optionTextStyle: PropTypes.object,
+  optionContainerStyle: PropTypes.object
 };
+
+Option.defaultProps = {
+  optionText: '',
+  optionTextStyle: {},
+  optionContainerStyle: {}
+}
 
 module.exports = Option;

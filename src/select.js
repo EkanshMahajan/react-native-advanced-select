@@ -26,20 +26,14 @@ class Select extends React.Component {
 
     this.pageX = 0;
     this.pageY = 0;
-
     this.state = {
-      value: this.props.initKey
-        ? this.props.data.filter(item => item.key === this.props.initKey)[0]
-            .label
-        : this.props.placeholder,
       show_options: false,
       search_text: ""
     };
   }
 
   _reset() {
-    const { placeholder } = this.props;
-    this.setState({ value: placeholder, show_options: false, search_text: "" });
+    this.setState({ show_options: false, search_text: "" });
     this.props.onSelect(null, null);
     if (this.props.parentScrollEnable) {
       this.props.parentScrollEnable();
@@ -68,11 +62,14 @@ class Select extends React.Component {
     }
   }
 
-  _handleSelect(key, label) {
-    this.setState({ show_options: false, value: label, search_text: "" });
-    this.props.onSelect(key, label);
-    if (this.props.parentScrollEnable) {
-      this.props.parentScrollEnable();
+  _handleSelect(item, index) {
+    const { onSelect, parentScrollEnable } = this.props
+    this.setState({ show_options: false, search_text: "" });
+    if (onSelect) {
+      onSelect(item, index);
+    }
+    if (parentScrollEnable) {
+      parentScrollEnable();
     }
   }
 
@@ -96,11 +93,16 @@ class Select extends React.Component {
       height,
       data,
       style,
-      styleOption,
-      styleText,
-      search
+      optionContainerStyle,
+      optionTextStyle,
+      search,
+      keyExtractor,
+      labelExtractor,
+      selectedKey
     } = this.props;
     const dimensions = { width, height };
+    const selectedItem = data.find(item => keyExtractor(item) === selectedKey)
+    const selectedItemLabel = labelExtractor(selectedItem) || ''
 
     return (
       <View>
@@ -122,9 +124,7 @@ class Select extends React.Component {
                   flex: 3
                 }}
               >
-                <Option style={styleOption} styleText={styleText}>
-                  {this.state.value}
-                </Option>
+                <Option style={optionContainerStyle} optionTextStyle={optionTextStyle} optionText={selectedItemLabel} />
               </View>
             </TouchableWithoutFeedback>
           )}
@@ -136,25 +136,11 @@ class Select extends React.Component {
               alignItems: "center"
             }}
           >
-            {
-              search && (
-                <TouchableWithoutFeedback onPress={this._reset.bind(this)}>
-                  <Icon
-                    name="ios-close"
-                    style={{
-                      color: "black",
-                      fontSize: 26,
-                      marginRight: 15
-                    }}
-                  />
-                </TouchableWithoutFeedback>
-              )
-            }
             <TouchableWithoutFeedback onPress={this._onPress.bind(this)}>
               <Icon
                 name="md-arrow-dropdown"
                 style={{
-                  color: "black",
+                  color: "grey",
                   fontSize: 24,
                   marginRight: 5
                 }}
@@ -167,18 +153,22 @@ class Select extends React.Component {
             items={search ? data.filter(item => {
               const parts = this.state.search_text.trim().split(/[ \-:]+/);
               const regex = new RegExp(`(${parts.join("|")})`, "ig");
-              return regex.test(item.label);
+              const label = labelExtractor(item) || ''
+              return regex.test(label);
             }) : data}
-            value={this.state.value}
+            value={selectedItemLabel}
             search={search}
             show={this.state.show_options}
             width={width}
             height={height}
             location={this.state.location}
-            onPress={this._handleSelect.bind(this)}
+            onItemPress={this._handleSelect.bind(this)}
             handleClose={this._handleOptionsClose.bind(this)}
             onChangeText={this._onChangeInput.bind(this)}
             placeholder={this.props.searchPlaceholder}
+            selectedKey={selectedKey}
+            keyExtractor={keyExtractor}
+            labelExtractor={labelExtractor}
           />
         )}
       </View>
@@ -192,17 +182,27 @@ Select.propTypes = {
   onSelect: PropTypes.func,
   search: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
-  initKey: PropTypes.number
+  style: PropTypes.object,
+  optionTextStyle: PropTypes.object,
+  optionContainerStyle: PropTypes.object,
+  selectedKey: PropTypes.oneOf([ PropTypes.string, PropTypes.number ]),
+  keyExtractor: PropTypes.func,
+  labelExtractor: PropTypes.func
 };
 
 Select.defaultProps = {
   width: 200,
   height: 40,
-  onSelect: () => {},
+  onSelect: (item, index) => {},
   search: false,
-  initKey: 0,
+  style: {},
+  optionTextStyle: {},
+  optionContainerStyle: {},
+  selectedKey: '',
   placeholder: "Select",
-  searchPlaceholder: "Search"
+  searchPlaceholder: "Search",
+  keyExtractor: (item) => item.key || '',
+  labelExtractor: (item) => item.label || '',
 };
 
 module.exports = Select;
