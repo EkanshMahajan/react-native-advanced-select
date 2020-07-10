@@ -59,7 +59,7 @@ class Items extends React.Component {
 
     const renderedItems = items.map((item, idx) => {
       const isSelected = (keyExtractor(item) === selectedKey) || false
-      const itemLabel = labelExtractor(item) || ''
+      const itemLabel = `${labelExtractor(item)}` || ''
       return item.section ? (
         <View style={{ padding: 5 }} key={idx}>
           <Text style={{ fontWeight: "bold" }}>{itemLabel}</Text>
