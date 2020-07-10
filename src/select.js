@@ -93,8 +93,8 @@ class Select extends React.Component {
       height,
       data,
       style,
-      styleOption,
-      styleText,
+      optionContainerStyle,
+      optionTextStyle,
       search,
       keyExtractor,
       labelExtractor,
@@ -124,7 +124,7 @@ class Select extends React.Component {
                   flex: 3
                 }}
               >
-                <Option style={styleOption} styleText={styleText} optionText={selectedItemLabel} />
+                <Option style={optionContainerStyle} optionTextStyle={optionTextStyle} optionText={selectedItemLabel} />
               </View>
             </TouchableWithoutFeedback>
           )}
@@ -182,6 +182,9 @@ Select.propTypes = {
   onSelect: PropTypes.func,
   search: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
+  style: PropTypes.object,
+  optionTextStyle: PropTypes.object,
+  optionContainerStyle: PropTypes.object,
   selectedKey: PropTypes.oneOf([ PropTypes.string, PropTypes.number ]),
   keyExtractor: PropTypes.func,
   labelExtractor: PropTypes.func
@@ -190,8 +193,11 @@ Select.propTypes = {
 Select.defaultProps = {
   width: 200,
   height: 40,
-  onSelect: () => {},
+  onSelect: (item, index) => {},
   search: false,
+  style: {},
+  optionTextStyle: {},
+  optionContainerStyle: {},
   selectedKey: '',
   placeholder: "Select",
   searchPlaceholder: "Search",
