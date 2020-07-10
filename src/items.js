@@ -36,7 +36,7 @@ class Items extends React.Component {
   render() {
     const {
       items,
-      onPress,
+      onItemPress,
       width,
       height,
       location,
@@ -45,7 +45,10 @@ class Items extends React.Component {
       onChangeText,
       placeholder,
       search,
-      value
+      value,
+      labelExtractor,
+      keyExtractor,
+      selectedKey
     } = this.props;
     let x = 0;
     let y = 0;
@@ -55,17 +58,19 @@ class Items extends React.Component {
     }
 
     const renderedItems = items.map((item, idx) => {
+      const isSelected = (keyExtractor(item) === selectedKey) || false
+      const itemLabel = labelExtractor(item) || ''
       return item.section ? (
         <View style={{ padding: 5 }} key={idx}>
-          <Text style={{ fontWeight: "bold" }}>{item.label}</Text>
+          <Text style={{ fontWeight: "bold" }}>{itemLabel}</Text>
         </View>
       ) : (
         <TouchableWithoutFeedback
-          onPress={() => onPress(item.key, item.label)}
+          onPress={() => onItemPress(item, idx)}
           key={idx}
         >
-          <View style={{ padding: 5 }}>
-            <Text style={{ marginLeft: 20 }}>{item.label}</Text>
+          <View style={[{ padding: 5 }, isSelected && { backgroundColor: '#D1D1D6FF'}]}>
+            <Text style={{ marginLeft: 5 }}>{itemLabel}</Text>
           </View>
         </TouchableWithoutFeedback>
       );
@@ -78,57 +83,57 @@ class Items extends React.Component {
         visible={show}
         onRequestClose={handleClose}
       >
-        <Overlay onPress={handleClose} />
-        <View style={[styles.container, { left: x, top: y, width: width }]}>
-          <View
-            style={{
-              height: height,
-              borderBottomColor: "#BDBDC1",
-              borderBottomWidth: 2 / window.scale
-            }}
-          >
-            {
-              search ? (
-                <View
-                  style={{
-                    flex: 1,
-                    flexDirection: "row",
-                    justifyContent: "flex-start",
-                    alignItems: "center"
-                  }}
-                >
-                  <Icon
-                    name="ios-search"
+        <Overlay onOverlayPress={handleClose} />
+        <View style={[styles.container, { left: x, top: y }]}>
+          <TouchableWithoutFeedback onPress={handleClose}>
+            <View
+              style={{
+                height: height,
+                borderBottomColor: "#BDBDC1",
+                borderBottomWidth: 2 / window.scale
+              }}
+            >
+              {
+                search ? (
+                  <View
                     style={{
-                      color: "black",
-                      fontSize: 26,
-                      marginLeft: 5,
-                      flex: 1
+                      flex: 1,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center"
                     }}
-                  />
-                  <TextInput
-                    onChangeText={onChangeText}
-                    placeholder={placeholder}
-                    underlineColorAndroid="transparent"
-                    style={{ flex: 5, margin: 0, padding: 0 }}
-                  />
-                </View>
-              ) : (
-                <View
-                  style={{
-                    flex: 1,
-                    flexDirection: "row",
-                    justifyContent: "flex-start",
-                    alignItems: "center"
-                  }}
-                >
-                  <Option>
-                    {value}
-                  </Option>
-                </View>
-              )
-            }
+                  >
+                    <Icon
+                      name="ios-search"
+                      style={{
+                        color: "black",
+                        fontSize: 26,
+                        marginLeft: 5,
+                        flex: 1
+                      }}
+                    />
+                    <TextInput
+                      onChangeText={onChangeText}
+                      placeholder={placeholder}
+                      underlineColorAndroid="transparent"
+                      style={{ flex: 5, margin: 0, padding: 0 }}
+                    />
+                  </View>
+                ) : (
+                  <View
+                    style={{
+                      flex: 1,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center"
+                    }}
+                  >
+                    <Option optionText={value} />
+                  </View>
+                )
+              }
             </View>
+          </TouchableWithoutFeedback>
           <ScrollView
             style={{ width: width - 2, height: height * 3 }}
             automaticallyAdjustContentInsets={false}
@@ -143,17 +148,23 @@ class Items extends React.Component {
 }
 
 Items.propTypes = {
-  onPress: PropTypes.func,
+  onItemPress: PropTypes.func,
   search: PropTypes.bool,
-  value: PropTypes.string
+  value: PropTypes.string,
+  labelExtractor: PropTypes.func,
+  keyExtractor: PropTypes.func,
+  selectedKey: PropTypes.oneOf([ PropTypes.string, PropTypes.number ])
 };
 
 Items.defaultProps = {
   width: 0,
   height: 0,
-  onPress: () => {},
+  onItemPress: () => {},
   search: false,
-  value: ''
+  value: '',
+  keyExtractor: (item) => item.key || '',
+  labelExtractor: (item) => item.label || '',
+  selectedKey: ''
 };
 
 module.exports = Items;

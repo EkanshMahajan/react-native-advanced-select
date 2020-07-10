@@ -18,11 +18,11 @@ class Option extends React.Component {
   }
 
   render() {
-    const { style, styleText } = this.props;
+    const { style, styleText, optionText } = this.props;
 
     return (
       <View style={[styles.container, style]}>
-        <Text style={styleText}>{this.props.children}</Text>
+        <Text style={styleText}>{optionText}</Text>
       </View>
     );
   }
