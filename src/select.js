@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import {
   Dimensions,
   StyleSheet,
-  Component,
   TouchableWithoutFeedback,
   View
 } from "react-native";
@@ -21,7 +20,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class Select extends Component {
+class Select extends React.Component {
   constructor(props) {
     super(props);
 
