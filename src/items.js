@@ -153,7 +153,7 @@ Items.propTypes = {
   value: PropTypes.string,
   labelExtractor: PropTypes.func,
   keyExtractor: PropTypes.func,
-  selectedKey: PropTypes.oneOf([ PropTypes.string, PropTypes.number ])
+  selectedKey: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ])
 };
 
 Items.defaultProps = {
