@@ -20,10 +20,10 @@ const styles = StyleSheet.create({
 
 class Overlay extends React.Component {
   render() {
-    const { show, onPress } = this.props;
+    const { show, onOverlayPress } = this.props;
 
     return (
-      <TouchableWithoutFeedback onPress={onPress}>
+      <TouchableWithoutFeedback onPress={onOverlayPress}>
         <View style={styles.overlay} />
       </TouchableWithoutFeedback>
     );
