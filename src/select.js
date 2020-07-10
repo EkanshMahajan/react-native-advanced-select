@@ -98,7 +98,9 @@ class Select extends React.Component {
       search,
       keyExtractor,
       labelExtractor,
-      selectedKey
+      selectedKey,
+      disabled,
+      disabledTextStyle
     } = this.props;
     const dimensions = { width, height };
     const selectedItem = data.find(item => keyExtractor(item) === selectedKey)
@@ -107,6 +109,7 @@ class Select extends React.Component {
     return (
       <View>
         <View
+          pointerEvents={disabled ? "none" : "auto"}
           ref={ref => {
             this._select = ref;
           }}
@@ -124,7 +127,11 @@ class Select extends React.Component {
                   flex: 3
                 }}
               >
-                <Option style={optionContainerStyle} optionTextStyle={optionTextStyle} optionText={selectedItemLabel} />
+                <Option
+                  style={optionContainerStyle}
+                  optionTextStyle={disabled ? { ...optionTextStyle, ...disabledTextStyle } : optionTextStyle}
+                  optionText={selectedItemLabel}
+                />
               </View>
             </TouchableWithoutFeedback>
           )}
@@ -185,9 +192,11 @@ Select.propTypes = {
   style: PropTypes.object,
   optionTextStyle: PropTypes.object,
   optionContainerStyle: PropTypes.object,
-  selectedKey: PropTypes.oneOf([ PropTypes.string, PropTypes.number ]),
+  selectedKey: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
   keyExtractor: PropTypes.func,
-  labelExtractor: PropTypes.func
+  labelExtractor: PropTypes.func,
+  disabled: PropTypes.bool,
+  disabledTextStyle: PropTypes.object
 };
 
 Select.defaultProps = {
@@ -203,6 +212,8 @@ Select.defaultProps = {
   searchPlaceholder: "Search",
   keyExtractor: (item) => item.key || '',
   labelExtractor: (item) => item.label || '',
+  disabled: false,
+  disabledTextStyle: { color: 'lightgrey' }
 };
 
 module.exports = Select;
