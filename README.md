@@ -22,7 +22,7 @@ $ yarn add https://github.com/EkanshMahajan/react-native-advanced-select
 
 Note: Ensure to add and configure [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) to your project before using this package.
 
-The snippet below shows how the component can be used:
+The snippet below shows how the component can be used
 
 ```javascript
 import React from 'react';
@@ -81,19 +81,21 @@ class SelectExample extends React.Component {
 
 ## Props
 
-|       Prop Name      |     Data Type    |        Default Values        |                                                  Description                                                  |
+|       Prop Name      |     Prop Type    |        Default Values        |                                                  Description                                                  |
 |:--------------------:|:----------------:|:----------------------------:|:-------------------------------------------------------------------------------------------------------------:|
-|       onSelect       |     function     |      (item, index) => {}     | Callback function invoked on option select that takes (selectedOptionItem, selectedOptionindex) as parameters |
-|      placeholder     |      string      |            Select            | Text to show as default text                                                                                  |
-|   searchPlaceholder  |      string      |            Search            | Text to show as default search text                                                                           |
-|         style        |      object      |              {}              | To style the select box                                                                                       |
-|    optionTextStyle   |      object      |              {}              | To style the text shown in the box                                                                            |
-| optionContainerStyle |      object      |              {}              | To style the options shown                                                                                    |
-|        search        |       bool       |             false            | Use search in Component                                                                                       |
-|      selectedKey     | string or number |              ""              | Key of the item which is selected whose label will be displayed                                               |
-|  parentScrollEnable  |     function     |             null             | Hack for Android nested ScrollView                                                                            |
-|  parentScrollDisable |     function     |             null             | Hack for Android nested ScrollView                                                                            |
-|     keyExtractor     |     function     |  (item) => item.key \|\| ""  | Function that extracts the key to uniquely identify an item                                                   |
-|    labelExtractor    |     function     | (item) => item.label \|\| "" | Function that extracts the label to be displayed for an item                                                  |
+|       onSelect       |       func       |      (item, index) => {}     | Callback function invoked on option select that takes (selectedOptionItem, selectedOptionindex) as parameters |
+|      placeholder     |      string      |            Select            |                                          Text to show as default text                                         |
+|   searchPlaceholder  |      string      |            Search            |                                      Text to show as default search text                                      |
+|         style        |      object      |              {}              |                                            To style the select box                                            |
+|    optionTextStyle   |      object      |              {}              |                                       To style the text shown in the box                                      |
+| optionContainerStyle |      object      |              {}              |                                           To style the options shown                                          |
+|        search        |       bool       |             false            |                                            Use search in Component                                            |
+|      selectedKey     | string or number |              ""              |                        Key of the item which is selected whose label will be displayed                        |
+|  parentScrollEnable  |       func       |             null             |                                       Hack for Android nested ScrollView                                      |
+|  parentScrollDisable |       func       |             null             |                                       Hack for Android nested ScrollView                                      |
+|     keyExtractor     |       func       |  (item) => item.key \|\| ""  |                          Function that extracts the key to uniquely identify an item                          |
+|    labelExtractor    |       func       | (item) => item.label \|\| "" |                          Function that extracts the label to be displayed for an item                         |
+|       disabled       |       bool       |             false            |                                        To disable dropdown toggle/click                                       |
+|   disabledTextStyle  |      object      |    { color: 'lightgrey' }    |                                 To style text displayed when disabled is true                                 |
 
 The MIT License (MIT). Please see [LICENSE](LICENSE) for more information.
