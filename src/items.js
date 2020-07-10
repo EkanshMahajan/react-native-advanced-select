@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import {
   Dimensions,
   StyleSheet,
-  Component,
   View,
   ScrollView,
   TouchableWithoutFeedback,
@@ -29,7 +28,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class Items extends Component {
+class Items extends React.Component {
   constructor(props) {
     super(props);
   }
