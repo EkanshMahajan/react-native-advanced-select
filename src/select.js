@@ -100,7 +100,8 @@ class Select extends React.Component {
       labelExtractor,
       selectedKey,
       disabled,
-      disabledTextStyle
+      disabledTextStyle,
+      optionNumberOfLines
     } = this.props;
     const dimensions = { width, height };
     const selectedItem = data.find(item => keyExtractor(item) === selectedKey)
@@ -128,6 +129,7 @@ class Select extends React.Component {
                 }}
               >
                 <Option
+                  optionNumberOfLines={optionNumberOfLines}
                   style={optionContainerStyle}
                   optionTextStyle={disabled ? { ...optionTextStyle, ...disabledTextStyle } : optionTextStyle}
                   optionText={selectedItemLabel}
@@ -176,6 +178,7 @@ class Select extends React.Component {
             selectedKey={selectedKey}
             keyExtractor={keyExtractor}
             labelExtractor={labelExtractor}
+            optionNumberOfLines={optionNumberOfLines}
           />
         )}
       </View>
@@ -196,7 +199,8 @@ Select.propTypes = {
   keyExtractor: PropTypes.func,
   labelExtractor: PropTypes.func,
   disabled: PropTypes.bool,
-  disabledTextStyle: PropTypes.object
+  disabledTextStyle: PropTypes.object,
+  optionNumberOfLines: PropTypes.number
 };
 
 Select.defaultProps = {
@@ -213,7 +217,8 @@ Select.defaultProps = {
   keyExtractor: (item) => item.key || '',
   labelExtractor: (item) => item.label || '',
   disabled: false,
-  disabledTextStyle: { color: 'lightgrey' }
+  disabledTextStyle: { color: 'lightgrey' },
+  optionNumberOfLines: 1
 };
 
 module.exports = Select;

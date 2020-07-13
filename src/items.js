@@ -48,7 +48,8 @@ class Items extends React.Component {
       value,
       labelExtractor,
       keyExtractor,
-      selectedKey
+      selectedKey,
+      optionNumberOfLines
     } = this.props;
     let x = 0;
     let y = 0;
@@ -128,7 +129,7 @@ class Items extends React.Component {
                       alignItems: "center"
                     }}
                   >
-                    <Option optionText={value} />
+                    <Option optionNumberOfLines={optionNumberOfLines} optionText={value} />
                   </View>
                 )
               }
@@ -153,7 +154,8 @@ Items.propTypes = {
   value: PropTypes.string,
   labelExtractor: PropTypes.func,
   keyExtractor: PropTypes.func,
-  selectedKey: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ])
+  selectedKey: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
+  optionNumberOfLines: PropTypes.number
 };
 
 Items.defaultProps = {
@@ -164,7 +166,8 @@ Items.defaultProps = {
   value: '',
   keyExtractor: (item) => item.key || '',
   labelExtractor: (item) => item.label || '',
-  selectedKey: ''
+  selectedKey: '',
+  optionNumberOfLines: 1
 };
 
 module.exports = Items;
