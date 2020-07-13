@@ -18,11 +18,11 @@ class Option extends React.Component {
   }
 
   render() {
-    const { optionContainerStyle, optionTextStyle, optionText } = this.props;
+    const { optionContainerStyle, optionNumberOfLines, optionTextStyle, optionText } = this.props;
 
     return (
       <View style={[styles.container, optionContainerStyle]}>
-        <Text style={optionTextStyle}>{optionText}</Text>
+        <Text numberOfLines={optionNumberOfLines} style={optionTextStyle}>{optionText}</Text>
       </View>
     );
   }
@@ -31,13 +31,15 @@ class Option extends React.Component {
 Option.propTypes = {
   optionText: PropTypes.string,
   optionTextStyle: PropTypes.object,
-  optionContainerStyle: PropTypes.object
+  optionContainerStyle: PropTypes.object,
+  optionNumberOfLines: PropTypes.number
 };
 
 Option.defaultProps = {
   optionText: '',
   optionTextStyle: {},
-  optionContainerStyle: {}
+  optionContainerStyle: {},
+  optionNumberOfLines: 1
 }
 
 module.exports = Option;
