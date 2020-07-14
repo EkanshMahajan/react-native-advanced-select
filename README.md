@@ -33,7 +33,7 @@ class SelectExample extends React.Component {
   constructor(props, state) {
     super(props, state);
     this.state = {
-      selecteKey: '',
+      selectedKey: '',
       items: [
         { myKey: 1, myLabel: "Fruits" },
         { myKey: 2, myLabel: "Red Apples" },
@@ -97,5 +97,6 @@ class SelectExample extends React.Component {
 |    labelExtractor    |       func       | (item) => item.label \|\| "" |                          Function that extracts the label to be displayed for an item                         |
 |       disabled       |       bool       |             false            |                                        To disable dropdown toggle/click                                       |
 |   disabledTextStyle  |      object      |    { color: 'lightgrey' }    |                                 To style text displayed when disabled is true                                 |
+|  optionNumberOfLines |      number      |               1              |           To set certain number of lines to text rendered in select value and select options' labels          |
 
 The MIT License (MIT). Please see [LICENSE](LICENSE) for more information.
