@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
 class Select extends React.Component {
   constructor(props) {
     super(props);
-
     this.pageX = 0;
     this.pageY = 0;
     this.state = {
@@ -103,12 +102,19 @@ class Select extends React.Component {
       disabledTextStyle,
       optionNumberOfLines
     } = this.props;
-    const dimensions = { width, height };
+
+    const widthForView = (this.state.viewWidth) ? this.state.viewWidth : width
+    const dimensions = { width: widthForView, height };
+
     const selectedItem = data.find(item => keyExtractor(item) === selectedKey)
     const selectedItemLabel = `${labelExtractor(selectedItem)}` || ''
 
     return (
-      <View>
+      <View onLayout={event => {
+        const layoutWidth = (event && event.nativeEvent && event.nativeEvent.layout && event.nativeEvent.layout.width)
+          ? event.nativeEvent.layout.width : width
+        this.setState({ viewWidth: layoutWidth })
+      }}>
         <View
           pointerEvents={disabled ? "none" : "auto"}
           ref={ref => {
@@ -168,7 +174,7 @@ class Select extends React.Component {
             value={selectedItemLabel}
             search={search}
             show={this.state.show_options}
-            width={width}
+            width={widthForView}
             height={height}
             location={this.state.location}
             onItemPress={this._handleSelect.bind(this)}

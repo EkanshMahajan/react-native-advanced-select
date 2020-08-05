@@ -136,7 +136,7 @@ class Items extends React.Component {
             </View>
           </TouchableWithoutFeedback>
           <ScrollView
-            style={{ width: width - 2, height: height * 3 }}
+            style={{ width }}
             automaticallyAdjustContentInsets={false}
             bounces={false}
           >
