@@ -49,7 +49,8 @@ class Items extends React.Component {
       labelExtractor,
       keyExtractor,
       selectedKey,
-      optionNumberOfLines
+      optionNumberOfLines,
+      optionTextStyle
     } = this.props;
     let x = 0;
     let y = 0;
@@ -71,7 +72,7 @@ class Items extends React.Component {
           key={idx}
         >
           <View style={[{ padding: 5 }, isSelected && { backgroundColor: '#D1D1D6FF'}]}>
-            <Text style={{ marginLeft: 5 }}>{itemLabel}</Text>
+            <Text style={[{ marginLeft: 5 }, optionTextStyle]}>{itemLabel}</Text>
           </View>
         </TouchableWithoutFeedback>
       );
@@ -129,7 +130,7 @@ class Items extends React.Component {
                       alignItems: "center"
                     }}
                   >
-                    <Option optionNumberOfLines={optionNumberOfLines} optionText={value} />
+                    <Option optionTextStyle={optionTextStyle} optionNumberOfLines={optionNumberOfLines} optionText={value} />
                   </View>
                 )
               }
@@ -155,7 +156,8 @@ Items.propTypes = {
   labelExtractor: PropTypes.func,
   keyExtractor: PropTypes.func,
   selectedKey: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
-  optionNumberOfLines: PropTypes.number
+  optionNumberOfLines: PropTypes.number,
+  optionTextStyle: PropTypes.object
 };
 
 Items.defaultProps = {
@@ -167,7 +169,8 @@ Items.defaultProps = {
   keyExtractor: (item) => item.key || '',
   labelExtractor: (item) => item.label || '',
   selectedKey: '',
-  optionNumberOfLines: 1
+  optionNumberOfLines: 1,
+  optionTextStyle: {}
 };
 
 module.exports = Items;

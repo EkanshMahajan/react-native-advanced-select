@@ -185,6 +185,7 @@ class Select extends React.Component {
             keyExtractor={keyExtractor}
             labelExtractor={labelExtractor}
             optionNumberOfLines={optionNumberOfLines}
+            optionTextStyle={optionTextStyle}
           />
         )}
       </View>
