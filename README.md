@@ -50,7 +50,7 @@ class SelectExample extends React.Component {
         { myKey: 13, myLabel: "Red Potatoes" },
         { myKey: 14, myLabel: "Rhubarb" },
         { myKey: 15, myLabel: "Tomatoes" }
-      ];
+      ]
     };
   }
 

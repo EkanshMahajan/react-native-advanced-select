@@ -1,3 +1,13 @@
-node_modules/
-/*.log
+# Logs
+*.log
+npm-debug.log
+
+# Runtime data
+tmp
+build
+dist
+
+# Dependency directory
+node_modules
+
 .DS_Store
