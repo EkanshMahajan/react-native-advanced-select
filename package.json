@@ -15,7 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/EkanshMahajan/react-native-advanced-select.git"
   },
-  "version": "1.0.5",
+  "version": "1.0.6",
   "bugs": {
     "url": "https://github.com/EkanshMahajan/react-native-advanced-select/issues"
   },
@@ -26,6 +26,11 @@
   },
   "keywords": [
     "select",
+    "react native select",
+    "react-native select",
+    "react-native-select",
+    "react-native advanced select",
+    "react-native-advanced-select",
     "custom-select",
     "custom select",
     "select wrapper",
@@ -36,15 +41,21 @@
     "advanced-select",
     "select advanced",
     "select-advanced",
+    "react native custom select dropdown",
     "custom select dropdown",
     "custom-select-dropdown",
     "dropdown",
+    "react native dropdown",
+    "react-native dropdown",
     "dropdown picker",
     "dropdown-picker",
     "dropdown for react native",
     "advanced dropdown",
     "advanced-dropdown",
     "picker",
+    "react native picker",
+    "react-native picker",
+    "react-native-picker",
     "picker for react native ios",
     "picker react native ios",
     "picker-react-native-ios"

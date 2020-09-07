@@ -1,5 +1,7 @@
 # react-native-advanced-select
 
+[![npm version](https://badge.fury.io/js/react-native-advanced-select.svg)](https://www.npmjs.com/package/react-native-advanced-select) [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 > Simple select component with in-built search for React-Native.
 
 ## Demo
@@ -9,13 +11,13 @@
 ## Installation
 
 ```bash
-$ npm install git+https://github.com/EkanshMahajan/react-native-advanced-select.git --save
+$ npm install react-native-advanced-select --save
 ```
 
 or use yarn
 
 ```bash
-$ yarn add https://github.com/EkanshMahajan/react-native-advanced-select
+$ yarn add react-native-advanced-select
 ```
 
 ## Usage
@@ -98,5 +100,3 @@ class SelectExample extends React.Component {
 |       disabled       |       bool       |             false            |                                        To disable dropdown toggle/click                                       |
 |   disabledTextStyle  |      object      |    { color: 'lightgrey' }    |                                 To style text displayed when disabled is true                                 |
 |  optionNumberOfLines |      number      |               1              |           To set certain number of lines to text rendered in select value and select options' labels          |
-
-The MIT License (MIT). Please see [LICENSE](LICENSE) for more information.
