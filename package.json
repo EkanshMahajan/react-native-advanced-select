@@ -2,9 +2,7 @@
   "name": "react-native-advanced-select",
   "license": "MIT",
   "main": "src/index.js",
-  "author": {
-    "name": "Ekansh Mahajan"
-  },
+  "author": "Ekansh Mahajan",
   "description": "Select component for react-native",
   "devDependencies": {
     "prop-types": "^15.5.10",
@@ -17,5 +15,18 @@
     "type": "git",
     "url": "git+https://github.com/EkanshMahajan/react-native-advanced-select.git"
   },
-  "version": "1.0.5"
+  "version": "1.0.5",
+  "bugs": {
+    "url": "https://github.com/EkanshMahajan/react-native-advanced-select/issues"
+  },
+  "homepage": "https://github.com/EkanshMahajan/react-native-advanced-select#readme",
+  "dependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "select",
+    "dropdown",
+    "picker"
+  ]
 }
