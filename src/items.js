@@ -50,7 +50,8 @@ class Items extends React.Component {
       keyExtractor,
       selectedKey,
       optionNumberOfLines,
-      optionTextStyle
+      optionTextStyle,
+      selectedRowStyle
     } = this.props;
     let x = 0;
     let y = 0;
@@ -71,7 +72,7 @@ class Items extends React.Component {
           onPress={() => onItemPress(item, idx)}
           key={idx}
         >
-          <View style={[{ padding: 5 }, isSelected && { backgroundColor: '#D1D1D6FF'}]}>
+          <View style={[{ padding: 5 }, isSelected && selectedRowStyle]}>
             <Text style={[{ marginLeft: 5 }, optionTextStyle]}>{itemLabel}</Text>
           </View>
         </TouchableWithoutFeedback>
@@ -157,7 +158,8 @@ Items.propTypes = {
   keyExtractor: PropTypes.func,
   selectedKey: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
   optionNumberOfLines: PropTypes.number,
-  optionTextStyle: PropTypes.object
+  optionTextStyle: PropTypes.object,
+  selectedRowStyle: PropTypes.object
 };
 
 Items.defaultProps = {
@@ -170,7 +172,8 @@ Items.defaultProps = {
   labelExtractor: (item) => item.label || '',
   selectedKey: '',
   optionNumberOfLines: 1,
-  optionTextStyle: {}
+  optionTextStyle: {},
+  selectedRowStyle: { backgroundColor: '#D1D1D6FF' }
 };
 
 module.exports = Items;
