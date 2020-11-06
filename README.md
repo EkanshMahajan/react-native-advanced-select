@@ -82,21 +82,24 @@ class SelectExample extends React.Component {
 ```
 
 ## Props
-
-|       Prop Name      |     Prop Type    |        Default Values        |                                                  Description                                                  |
-|:--------------------:|:----------------:|:----------------------------:|:-------------------------------------------------------------------------------------------------------------:|
-|       onSelect       |       func       |      (item, index) => {}     | Callback function invoked on option select that takes (selectedOptionItem, selectedOptionindex) as parameters |
-|      placeholder     |      string      |            Select            |                                          Text to show as default text                                         |
-|   searchPlaceholder  |      string      |            Search            |                                      Text to show as default search text                                      |
-|         style        |      object      |              {}              |                                            To style the select box                                            |
-|    optionTextStyle   |      object      |              {}              |                                       To style the text shown in the box                                      |
-| optionContainerStyle |      object      |              {}              |                                           To style the options shown                                          |
-|        search        |       bool       |             false            |                                            Use search in Component                                            |
-|      selectedKey     | string or number |              ""              |                        Key of the item which is selected whose label will be displayed                        |
-|  parentScrollEnable  |       func       |             null             |                                       Hack for Android nested ScrollView                                      |
-|  parentScrollDisable |       func       |             null             |                                       Hack for Android nested ScrollView                                      |
-|     keyExtractor     |       func       |  (item) => item.key \|\| ""  |                          Function that extracts the key to uniquely identify an item                          |
-|    labelExtractor    |       func       | (item) => item.label \|\| "" |                          Function that extracts the label to be displayed for an item                         |
-|       disabled       |       bool       |             false            |                                        To disable dropdown toggle/click                                       |
-|   disabledTextStyle  |      object      |    { color: 'lightgrey' }    |                                 To style text displayed when disabled is true                                 |
-|  optionNumberOfLines |      number      |               1              |           To set certain number of lines to text rendered in select value and select options' labels          |
+|        Prop Name        |     Prop Type    |          Default Values          |                                                  Description                                                  |
+|:-----------------------:|:----------------:|:--------------------------------:|:-------------------------------------------------------------------------------------------------------------:|
+|         onSelect        |       func       |        (item, index) => {}       | Callback function invoked on option select that takes (selectedOptionItem, selectedOptionindex) as parameters |
+|       placeholder       |      string      |              Select              |                                          Text to show as default text                                         |
+|    searchPlaceholder    |      string      |              Search              |                                      Text to show as default search text                                      |
+|          style          |      object      |                {}                |                                            To style the select box                                            |
+|     optionTextStyle     |      object      |                {}                |                                       To style the text shown in the box                                      |
+|   optionContainerStyle  |      object      |                {}                |                                           To style the options shown                                          |
+|          search         |       bool       |               false              |                                            Use search in Component                                            |
+|       selectedKey       | string or number |                ""                |                        Key of the item which is selected whose label will be displayed                        |
+|    parentScrollEnable   |       func       |               null               |                                       Hack for Android nested ScrollView                                      |
+|   parentScrollDisable   |       func       |               null               |                                       Hack for Android nested ScrollView                                      |
+|       keyExtractor      |       func       |    (item) => item.key \|\| ""    |                          Function that extracts the key to uniquely identify an item                          |
+|      labelExtractor     |       func       |   (item) => item.label \|\| ""   |                          Function that extracts the label to be displayed for an item                         |
+|         disabled        |       bool       |               false              |                                        To disable dropdown toggle/click                                       |
+|    disabledTextStyle    |      object      |      { color: 'lightgrey' }      |                                 To style text displayed when disabled is true                                 |
+|   optionNumberOfLines   |      number      |                 1                |           To set certain number of lines to text rendered in select value and select options' labels          |
+|   placeholderTextStyle  |      object      |                {}                |                       To style the placeholder text displayed when no option is selected                      |
+| showCustomRightIconView |      boolean     |               false              |                     To decide if you want to render custom right icon for dropdown or not                     |
+|   customRightIconView   |       func       |               null               |                                  To render custom right icon view in dropdown                                 |
+|     selectedRowStyle    |      object      | { backgroundColor: '#D1D1D6FF' } |                           To style the selected option view when dropdown is opened                           |

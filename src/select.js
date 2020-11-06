@@ -100,7 +100,12 @@ class Select extends React.Component {
       selectedKey,
       disabled,
       disabledTextStyle,
-      optionNumberOfLines
+      optionNumberOfLines,
+      placeholder,
+      placeholderTextStyle,
+      showCustomRightIconView,
+      customRightIconView,
+      selectedRowStyle
     } = this.props;
 
     const widthForView = (this.state.viewWidth) ? this.state.viewWidth : width
@@ -137,31 +142,40 @@ class Select extends React.Component {
                 <Option
                   optionNumberOfLines={optionNumberOfLines}
                   style={optionContainerStyle}
-                  optionTextStyle={disabled ? { ...optionTextStyle, ...disabledTextStyle } : optionTextStyle}
-                  optionText={selectedItemLabel}
+                  optionTextStyle={selectedItem
+                    ? disabled ? { ...optionTextStyle, ...disabledTextStyle } : optionTextStyle
+                    : placeholderTextStyle
+                  }
+                  optionText={selectedItem ? selectedItemLabel : placeholder}
                 />
               </View>
             </TouchableWithoutFeedback>
           )}
-          <View
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              justifyContent: "flex-end",
-              alignItems: "center"
-            }}
-          >
-            <TouchableWithoutFeedback onPress={this._onPress.bind(this)}>
-              <Icon
-                name="md-arrow-dropdown"
-                style={{
-                  color: "grey",
-                  fontSize: 24,
-                  marginRight: 5
-                }}
-              />
-            </TouchableWithoutFeedback>
-          </View>
+          <TouchableWithoutFeedback onPress={this._onPress.bind(this)} style={{ flex: 1 }}>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "flex-end",
+                alignItems: "center"
+              }}
+            >
+                {
+                  (showCustomRightIconView && customRightIconView) ? (
+                    customRightIconView()
+                  ) : (
+                    <Icon
+                      name="md-arrow-dropdown"
+                      style={{
+                        color: "grey",
+                        fontSize: 24,
+                        marginRight: 5
+                      }}
+                    />
+                  )
+                }
+            </View>
+          </TouchableWithoutFeedback>
         </View>
         {this.state.show_options && (
           <Items
@@ -186,6 +200,7 @@ class Select extends React.Component {
             labelExtractor={labelExtractor}
             optionNumberOfLines={optionNumberOfLines}
             optionTextStyle={optionTextStyle}
+            selectedRowStyle={selectedRowStyle}
           />
         )}
       </View>
@@ -207,7 +222,12 @@ Select.propTypes = {
   labelExtractor: PropTypes.func,
   disabled: PropTypes.bool,
   disabledTextStyle: PropTypes.object,
-  optionNumberOfLines: PropTypes.number
+  optionNumberOfLines: PropTypes.number,
+  placeholder: PropTypes.string,
+  placeholderTextStyle: PropTypes.object,
+  showCustomRightIconView: PropTypes.bool,
+  customRightIconView: PropTypes.func,
+  selectedRowStyle: PropTypes.object
 };
 
 Select.defaultProps = {
@@ -225,7 +245,11 @@ Select.defaultProps = {
   labelExtractor: (item) => item.label || '',
   disabled: false,
   disabledTextStyle: { color: 'lightgrey' },
-  optionNumberOfLines: 1
+  optionNumberOfLines: 1,
+  placeholderTextStyle: {},
+  showCustomRightIconView: false,
+  customRightIconView: null,
+  selectedRowStyle: { backgroundColor: '#D1D1D6FF' }
 };
 
 module.exports = Select;
